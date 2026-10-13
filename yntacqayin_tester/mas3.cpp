@@ -1,5 +1,5 @@
-#include "1.cpp"
-#include "2.cpp"
+#include "mas1.cpp"
+#include "mas2.cpp"
 #include "header.h"
 #include <iostream>
 
