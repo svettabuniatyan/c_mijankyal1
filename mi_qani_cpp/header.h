@@ -1,3 +1,3 @@
 #pragma once
 
-inline int a = 50;
+inline int global_score = 100;
