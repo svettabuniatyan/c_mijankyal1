@@ -1,23 +1,17 @@
 #include <iostream>
 
 template <int N>
-struct Fibonacci {
-    static const int value = Fibonacci<N - 1>::value + Fibonacci<N - 2>::value;
-};
+int fib = fib<N - 1>+fib<N - 2>;
+
 
 template <>
-struct Fibonacci<0> {
-    static const int value = 0;
-};
+int fib<0> =1;
 
 template <>
-struct Fibonacci<1> {
-    static const int value = 1;
-};
+int fib<1> =1;
 
 int main() {
-    std::cout << "Fibonacci (10) = " << Fibonacci<10>::value << std::endl;
-    std::cout << "Fibonacci (20) = " << Fibonacci<20>::value << std::endl;
-
+   int x=fib<10>;
+   std::cout<<x;
     return 0;
 }
