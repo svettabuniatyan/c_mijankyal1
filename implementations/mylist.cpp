@@ -82,6 +82,51 @@ public:
         }
         std::cout << std::endl;
     }
+
+    Node<T>* find(const T& val) {
+        Node<T>* current = head;
+        while (current != nullptr) {
+            if (current->data == val) return current;
+            current = current->next;
+        }
+        return nullptr;
+    }
+
+     void insert (Node<T>* position, const T& val) {
+        if (position == nullptr) { 
+            push_back (val);
+            return;
+        }
+
+        Node<T>* newitem=new Node<T>(val);
+        newitem->next=position->next;
+        newitem->prev=position;
+
+        if(position->next!=nullptr) 
+            position->next->prev=newitem;
+        else tail = newitem;
+
+        position->next = newitem;
+    }
+
+    void erase(Node<T>* pos){
+        if(pos==nullptr) return;
+
+        if(pos==head) {
+            pop_front();
+            return;
+        }
+
+        if(pos==tail){
+            pop_back();
+            return;
+        }
+
+        pos->prev->next=pos->next;
+        pos->next->prev=pos->prev;
+
+        delete pos;
+    }
     
 };
     
@@ -94,5 +139,15 @@ int main() {
     intList.push_front(5);
 
     intList.printlist();//5 10 20 30
+
+    Node<int>* ptr=intList.find(20);
+    if (ptr!=nullptr) 
+        intList.insert(ptr, 25);
+    intList.printlist();//5 10 20 25 30
+
+    ptr=intList.find(20);
+    if(ptr!=nullptr)
+        intList.erase(ptr);
+    intList.printlist();//5 10 25 30
     return 0;
 }
