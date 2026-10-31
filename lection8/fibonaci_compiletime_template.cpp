@@ -1,17 +1,21 @@
 #include <iostream>
 
-template <int N>
-int fib = fib<N - 1>+fib<N - 2>;
-
-
-template <>
-int fib<0> =1;
+template <size_t N>
+size_t fibonaci() {
+    return fibonaci<N - 1>() + fibonaci<N - 2>();
+}
 
 template <>
-int fib<1> =1;
+size_t fibonaci<0>() {
+    return 1; 
+}
+template <>
+size_t fibonaci<1>() {
+    return 1;
+}
 
 int main() {
-   int x=fib<10>;
-   std::cout<<x;
+    std::cout << "Fibonacci<10> = " << fibonaci<10>() << std::endl;
+
     return 0;
 }
